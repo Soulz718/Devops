@@ -1,0 +1,39 @@
+# Initialize a repository
+git init
+
+# Check status
+git status
+
+# Add files
+git add .
+
+# Commit changes
+git commit -m "Initial commit"
+
+# Connect to remote repository
+git remote add origin <repo-url>
+
+# Push code
+git push -u origin main
+
+# Pull latest changes
+git pull
+
+# Create a branch
+git checkout -b feature-name
+
+# Switch branches
+git checkout main
+
+# Merge a branch
+git merge feature-name
+
+##################
+git add .
+git commit -m "Updated project"
+git push
+
+##################
+git status
+git log --oneline
+git remote -v
