@@ -1,4 +1,4 @@
-#step 1; Configure the provider
+# step 1; Configure the provider
 terraform {
   required_providers {
     aws = {
@@ -13,7 +13,7 @@ provider "aws" {
   region = "us-east-2"
 }
 
-#step 2: create a VPC
+# step 2: create a VPC
 resource "aws_vpc" "myvpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
@@ -34,7 +34,7 @@ resource "aws_subnet" "mypub" {
   }
 }
 
-#step 4 : create IGW
+# step 4 : create IGW
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.myvpc.id
 
@@ -43,7 +43,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-#step5 :Create Route table
+# step5 :Create Route table
 
 resource "aws_route_table" "pubRT" {
   vpc_id = aws_vpc.myvpc.id
@@ -53,8 +53,31 @@ resource "aws_route_table" "pubRT" {
     gateway_id = aws_internet_gateway.igw.id
   }
 }
-#step 6: create subnet association
+# step 6: create subnet association
 resource "aws_route_table_association" "subA" {
   subnet_id      = aws_subnet.mypub.id
   route_table_id = aws_route_table.pubRT.id
 }
+
+
+# Terraform Commands
+
+Putty install and open
+
+root user - sudo -i
+terraform wget "terraform dowunload URL"
+ls
+unzip terraform wget URL
+unable to unzip - apt update
+apt install unzip
+unzip terraform wget
+ls
+terraform --version #binary file path
+Path - mv terraform /usr/local/bin/
+nano  main.tf 
+
+#### Main
+1. terraform init  #statefile
+2. terraform plan   #plan execute
+3. terraform apply  #create
+
