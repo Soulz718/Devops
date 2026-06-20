@@ -1,0 +1,16 @@
+##  Kubernetes   ##
+
+## Master Node:
+
+API server -  Every Communication  happen via API Server
+Kube Controller Manager - State check - Desire /Actual State
+Cloud controller manager - Cloud AWS
+Scheduler - Load ,CPU - Desides in which node the container should be created
+ETCD - Database/ Store all the data
+
+## Master Node:
+
+Kubelet - 
+Kubeproxy -
+Pod - Cube of container( Contains one or more container)
+Container Runtime - Create /delete the containers
