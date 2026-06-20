@@ -37,3 +37,4 @@ git push
 git status
 git log --oneline
 git remote -v
+git checkout --orphan clean_branch
