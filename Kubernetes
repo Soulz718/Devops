@@ -13,4 +13,4 @@ ETCD - Database/ Store all the data
 Kubelet - 
 Kubeproxy -
 Pod - Cube of container( Contains one or more container)
-Container Runtime - Create /delete the containers
+Container Runtime - Create /delete the container
