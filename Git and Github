@@ -36,4 +36,9 @@ git push
 ##################
 git status
 git log --oneline
+<<<<<<< HEAD
 git remote -v
+=======
+git remote -v
+git checkout --orphan clean_branch
+>>>>>>> Soul

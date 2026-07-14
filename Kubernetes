@@ -1,0 +1,478 @@
+##  Kubernetes   ##
+
+## Master Node:
+
+API server -  Every Communication  happen via API Server
+Kube Controller Manager - State check - Desire /Actual State
+Cloud controller manager - Cloud AWS
+Scheduler - Load ,CPU - Desides in which node the container should be created
+ETCD - Database/ Store all the data
+
+## Master Node:
+
+Kubelet - 
+Kubeproxy -
+Pod - Cube of container( Contains one or more container)
+Container Runtime - Create /delete the container
+
+##  Kubernetes   ##
+
+Master Node:
+
+API server -  Every Communication  happen via API Server
+Kube Controller Manager - State check - Desire /Actual State
+Cloud controller manager - Cloud AWS
+Scheduler - Load ,CPU - Desides in which node the container should be created
+ETCD - Database/ Store all the data
+
+Master Node:
+
+Kubelet - 
+Kubeproxy -
+Pod - Cube of container( Contains one or more container)
+Container Runtime - Create /delete the container 
+
+## Commands  ##
+
+
+kubectl get nodes
+kubectl get pods
+kubectl get pods -A
+kubectl get svc
+kubectl get deployments
+kubectl describe pod <pod>
+kubectl logs <pod>
+kubectl exec -it <pod> -- /bin/bash
+kubectl apply -f file.yaml
+kubectl delete -f file.yaml
+kubectl scale deployment nginx --replicas=3
+kubectl rollout status deployment/nginx
+kubectl rollout undo deployment/nginx
+kubectl get configmaps
+kubectl get secrets
+kubectl get ns
+kubectl top nodes
+kubectl top pods
+kubectl get all
+kubectl cluster-info
+
+
+## Cluster Commands  ##
+Check cluster information
+kubectl cluster-info
+Check Kubernetes version
+kubectl version
+View cluster nodes
+kubectl get nodes
+
+Output:
+
+NAME              STATUS   ROLES
+master-node       Ready    control-plane
+worker-node-1     Ready    <none>
+2. Pod Commands
+List pods
+kubectl get pods
+List all pods
+kubectl get pods -A
+Detailed pod information
+kubectl describe pod <pod-name>
+
+Example:
+
+kubectl describe pod nginx-pod
+Pod logs
+kubectl logs <pod-name>
+
+Example:
+
+kubectl logs nginx-pod
+Access pod shell
+kubectl exec -it <pod-name> -- /bin/bash
+
+Example:
+
+kubectl exec -it nginx-pod -- /bin/bash
+3. Deployment Commands
+List deployments
+kubectl get deployments
+Create deployment
+kubectl create deployment nginx --image=nginx
+Scale deployment
+kubectl scale deployment nginx --replicas=3
+Update image
+kubectl set image deployment/nginx nginx=nginx:latest
+Delete deployment
+kubectl delete deployment nginx
+4. Service Commands
+List services
+kubectl get svc
+Expose deployment
+kubectl expose deployment nginx --port=80 --type=NodePort
+Describe service
+kubectl describe svc nginx
+5. Namespace Commands
+List namespaces
+kubectl get ns
+Create namespace
+kubectl create namespace dev
+Delete namespace
+kubectl delete namespace dev
+Run commands in namespace
+kubectl get pods -n dev
+6. YAML File Commands
+Apply configuration
+kubectl apply -f deployment.yaml
+Create resources
+kubectl create -f deployment.yaml
+Delete resources
+kubectl delete -f deployment.yaml
+7. ConfigMap & Secret Commands
+View ConfigMaps
+kubectl get configmaps
+View Secrets
+kubectl get secrets
+Describe Secret
+kubectl describe secret my-secret
+8. Node Commands
+View nodes
+kubectl get nodes
+Describe node
+kubectl describe node <node-name>
+Drain node
+kubectl drain <node-name> --ignore-daemonsets
+Uncordon node
+kubectl uncordon <node-name>
+9. Troubleshooting Commands
+Check all resources
+kubectl get all
+Watch resources continuously
+kubectl get pods -w
+View events
+kubectl get events
+Resource usage
+kubectl top nodes
+kubectl top pods
+10. Rollback Commands
+Deployment history
+kubectl rollout history deployment/nginx
+Rollback deployment
+kubectl rollout undo deployment/nginx
+Check rollout status
+kubectl rollout status deployment/nginx
+Kubernetes Architecture
+                    Kubernetes Cluster
+                           │
+        ┌──────────────────┴──────────────────┐
+        │                                     │
+ Control Plane                          Worker Nodes
+        │                                     │
+        ▼                                     ▼
+  API Server                           Pods
+  Scheduler                            Containers
+  Controller Manager                   Services
+  etcd
+  
+  
+  
+  
+  
+  
+  1. Get Cluster Nodes
+kubectl get nodes
+Purpose
+
+Shows all worker and control-plane nodes in the cluster.
+
+Example Output
+NAME           STATUS   ROLES           AGE   VERSION
+master-node    Ready    control-plane   10d   v1.33
+worker-node1   Ready    <none>          10d   v1.33
+Use Case
+
+Check whether cluster nodes are healthy.
+
+2. Get Pods
+kubectl get pods
+Purpose
+
+Lists pods in the current namespace.
+
+Example
+NAME                     READY   STATUS
+nginx-7f4f6d8f4d-kx8jd   1/1     Running
+Use Case
+
+Verify if applications are running.
+
+3. Get Pods in All Namespaces
+kubectl get pods -A
+Purpose
+
+Shows pods from every namespace.
+
+Example
+NAMESPACE     NAME                 STATUS
+default       nginx-pod            Running
+kube-system   coredns              Running
+Use Case
+
+Troubleshooting cluster-wide issues.
+
+4. Get Services
+kubectl get svc
+Purpose
+
+Lists Kubernetes Services.
+
+Example
+NAME         TYPE        CLUSTER-IP
+kubernetes   ClusterIP   10.96.0.1
+nginx-svc    NodePort    10.96.0.20
+Use Case
+
+Check application networking.
+
+5. Get Deployments
+kubectl get deployments
+Purpose
+
+Lists deployments.
+
+Example
+NAME    READY   UP-TO-DATE
+nginx   3/3     3
+Use Case
+
+Verify replica count and deployment status.
+
+6. Describe a Pod
+kubectl describe pod nginx-pod
+Purpose
+
+Shows detailed pod information.
+
+Information Included
+Events
+Container status
+Image used
+Resource limits
+Restart count
+Use Case
+kubectl describe pod mypod
+
+Useful when a pod is failing.
+
+7. View Pod Logs
+kubectl logs nginx-pod
+Purpose
+
+Displays application logs.
+
+Example
+Application Started
+Database Connected
+Use Case
+
+Debug application issues.
+
+8. Access Pod Terminal
+kubectl exec -it nginx-pod -- /bin/bash
+Purpose
+
+Log into a running container.
+
+Example
+kubectl exec -it nginx-pod -- /bin/sh
+
+Inside pod:
+
+ls
+cat file.txt
+Use Case
+
+Troubleshooting container issues.
+
+9. Apply YAML File
+kubectl apply -f deployment.yaml
+Purpose
+
+Create or update resources.
+
+Example Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+Use Case
+
+Deploy applications.
+
+10. Delete Resources
+kubectl delete -f deployment.yaml
+Purpose
+
+Deletes resources defined in YAML.
+
+Use Case
+
+Remove deployments, services, etc.
+
+11. Scale Deployment
+kubectl scale deployment nginx --replicas=3
+Purpose
+
+Increase or decrease pod count.
+
+Before
+nginx   1/1
+After
+nginx   3/3
+Use Case
+
+Handle increased traffic.
+
+12. Check Rollout Status
+kubectl rollout status deployment/nginx
+Purpose
+
+Monitor deployment progress.
+
+Example
+deployment "nginx" successfully rolled out
+Use Case
+
+Verify deployment success.
+
+13. Rollback Deployment
+kubectl rollout undo deployment/nginx
+Purpose
+
+Restore previous version.
+
+Example
+Rollback to previous deployment
+Use Case
+
+Application failure after deployment.
+
+14. View ConfigMaps
+kubectl get configmaps
+Purpose
+
+Lists configuration data.
+
+Example
+NAME
+app-config
+Use Case
+
+Store environment settings.
+
+15. View Secrets
+kubectl get secrets
+Purpose
+
+Lists Kubernetes secrets.
+
+Example
+NAME
+db-password
+Use Case
+
+Store passwords and API keys.
+
+16. View Namespaces
+kubectl get ns
+Purpose
+
+Lists namespaces.
+
+Example
+NAME
+default
+kube-system
+dev
+prod
+Use Case
+
+Environment separation.
+
+17. Node Resource Usage
+kubectl top nodes
+Purpose
+
+Shows CPU and memory usage.
+
+Example
+NAME          CPU(cores)   MEMORY(bytes)
+worker-node1  250m         1024Mi
+Requirement
+
+Metrics Server must be installed.
+
+18. Pod Resource Usage
+kubectl top pods
+Purpose
+
+Shows pod resource consumption.
+
+Example
+NAME        CPU(cores)   MEMORY
+nginx-pod   20m          50Mi
+Use Case
+
+Performance monitoring.
+
+19. Get All Resources
+kubectl get all
+Purpose
+
+Displays:
+
+Pods
+Services
+Deployments
+ReplicaSets
+Example
+pod/nginx
+svc/nginx
+deployment/nginx
+replicaset/nginx
+Use Case
+
+Quick overview of namespace.
+
+20. Cluster Information
+kubectl cluster-info
+Purpose
+
+Displays cluster endpoints.
+
+Example
+Kubernetes control plane is running at https://192.168.1.10:6443
+Use Case
+
+Verify cluster connectivity.
+
+Kubernetes Resource Relationship
+Deployment
+     │
+     ▼
+ReplicaSet
+     │
+     ▼
+Pods
+     │
+     ▼
+Containers
+Daily DevOps Troubleshooting Flow
+kubectl get pods
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+kubectl exec -it <pod-name> -- /bin/bash
+kubectl get svc
+kubectl get deployments
+kubectl top pods
